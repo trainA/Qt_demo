@@ -19,6 +19,7 @@ QDebug()使用
 %n 至此已读入值的等价字符数
 %[] 扫描字符集合
 %% 读%符号
+qDebug("intensity:%d",intensity[0][2]); （%d表示整数）一个样例
 */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -35,7 +36,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-
+    dialog_text_edit *t = new dialog_text_edit();
+    t->show();
+    //使用这个可能不会显示因为t 是在堆里面创建的 使用show（）的话当函数执行完成就释放掉
+   // t.exec();//使用这个函数需要等到用户将对话框关闭才会消失
 }
 
 
