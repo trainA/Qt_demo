@@ -2,13 +2,12 @@
 #include "ui_dialog_text_edit.h"
 
 dialog_text_edit::dialog_text_edit(QWidget *parent)
-        :QDialog(parent)
+        : QDialog(parent)
 {
-        ui->setupUI(this);
+
 
 }
 dialog_text_edit::~dialog_text_edit()
 {
-    delete ui;
 }
 
