@@ -9,5 +9,6 @@ dialog_text_edit::dialog_text_edit(QWidget *parent)
 }
 dialog_text_edit::~dialog_text_edit()
 {
+
 }
 
