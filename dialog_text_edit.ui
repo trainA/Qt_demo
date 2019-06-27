@@ -37,7 +37,7 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="but_OK">
       <property name="text">
        <string>确定</string>
       </property>
@@ -57,7 +57,7 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="but_">
       <property name="text">
        <string>取消</string>
       </property>
@@ -77,7 +77,7 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="but_close">
       <property name="text">
        <string>关闭</string>
       </property>
