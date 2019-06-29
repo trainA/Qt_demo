@@ -23,7 +23,7 @@ public:
 private slots:
 
     void on_checkBox_3_clicked(bool checked);
-
+    void set_font_color();
 private :
    Ui::dialog_text_edit *ui;
 };
