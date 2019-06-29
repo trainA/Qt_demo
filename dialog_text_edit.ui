@@ -39,7 +39,7 @@
     <item>
      <widget class="QPushButton" name="but_OK">
       <property name="text">
-       <string>确定</string>
+       <string>确定(&amp;N)</string>
       </property>
      </widget>
     </item>
@@ -107,6 +107,11 @@
      <height>171</height>
     </rect>
    </property>
+   <property name="plainText">
+    <string>使用(&amp;按键)就可以将这个按键设置为这个组件的焦点切换键
+使用界面上的 Edit Buddies 就可以进入伙伴模式就可以使用窗体上的快捷键定位焦点（比如 将Label 和编辑进行绑定）
+使用界面上的 Edit Tab Order 可以自定义Tab的编辑状态（按tab的跳转循序）</string>
+   </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_2">
    <property name="geometry">
@@ -119,23 +124,23 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="rb_black">
       <property name="text">
-       <string>Black</string>
+       <string>Black(&amp;B)</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QRadioButton" name="rb_red">
       <property name="text">
-       <string>Red</string>
+       <string>Red(&amp;R)</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QRadioButton" name="rb_blue">
       <property name="text">
-       <string>Blue</string>
+       <string>Blue(&amp;B)</string>
       </property>
      </widget>
     </item>
@@ -175,6 +180,21 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>rb_black</tabstop>
+  <tabstop>rb_red</tabstop>
+  <tabstop>rb_blue</tabstop>
+  <tabstop>plainTextEdit</tabstop>
+  <tabstop>but_OK</tabstop>
+  <tabstop>but_</tabstop>
+  <tabstop>but_close</tabstop>
+  <tabstop>rb_black</tabstop>
+  <tabstop>rb_red</tabstop>
+  <tabstop>rb_blue</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
