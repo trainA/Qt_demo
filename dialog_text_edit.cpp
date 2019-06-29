@@ -9,7 +9,7 @@ dialog_text_edit::dialog_text_edit(QWidget *parent)
     connect(ui->rb_black,SIGNAL(clicked()),this,SLOT(set_font_color()));//自定义槽函数绑定 注意 set_font_color 在头文件里定义了
     connect(ui->rb_blue,SIGNAL(clicked()),this,SLOT(set_font_color()));
     connect(ui->rb_red,SIGNAL(clicked()),this,SLOT(set_font_color()));
-
+    ui->rb_black->setChecked(true);
 }
 dialog_text_edit::~dialog_text_edit()
 {

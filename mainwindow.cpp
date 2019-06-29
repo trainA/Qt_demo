@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dialog_text_edit.h"
+#include "code_create_ui.h"
 /*
 QDebug()使用
 %a,%A 读入一个浮点值(仅C99有效)
@@ -78,4 +79,10 @@ void MainWindow::on_but_massage_clicked()
         break;
     }
      QMessageBox::information(NULL, "Title", QString("用户单击的是:") + txt);
+}
+
+void MainWindow::on_pb_code_creatUI_clicked()
+{
+    code_create_ui *t = new code_create_ui();
+    t->show();
 }

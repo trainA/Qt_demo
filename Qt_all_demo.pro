@@ -31,12 +31,16 @@ DEFINES += QT_DEPRECATED_WARNINGS #
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dialog_text_edit.cpp
+    dialog_text_edit.cpp \
+    code_create_ui.cpp
 #头文件
 HEADERS += \
         mainwindow.h \
-    dialog_text_edit.h
+    dialog_text_edit.h \
+    code_create_ui.h \
+    universal_head.h
 #窗体文件
 FORMS += \
         mainwindow.ui \
-    dialog_text_edit.ui
+    dialog_text_edit.ui \
+    code_create_ui.ui

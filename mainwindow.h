@@ -21,6 +21,8 @@ private slots:
 
     void on_but_massage_clicked();
 
+    void on_pb_code_creatUI_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
