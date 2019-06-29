@@ -6,6 +6,14 @@
 #include <QDebug>
 #include <QString>
 
+#ifndef NOT_STD_HEAD
+
+    #include <stdio.h>
+    #include <string.h>
+    #include <iostream>
+    #include <string>
+#endif
+
 #ifndef NOT_CREATE_UI
     #include <QCheckBox>
     #include <QPushButton>
