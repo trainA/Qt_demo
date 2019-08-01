@@ -1,10 +1,16 @@
 #include <QMessageBox>
 #include <QString>
 #include <QDebug>
+#include <QMenu>
+#include <QAction>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dialog_text_edit.h"
 #include "code_create_ui.h"
+#include "mainwindow.h"
+#include "mainwindow.h"
+#include "universal_head.h"
 /*
 QDebug()使用
 %a,%A 读入一个浮点值(仅C99有效)
@@ -21,15 +27,45 @@ QDebug()使用
 %[] 扫描字符集合
 %% 读%符号
 qDebug("intensity:%d",intensity[0][2]); （%d表示整数）一个样例
+
+点击库函数按F1可以快速查看帮助文档
 */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);//实现窗口的生成与各种属性的设置
-    QPushButton *btn_p1 = new QPushButton(this);
+
+    move(0,0);// move 是相当于屏幕位置
+
+    dynamic_add_module();//动态添加菜单 按钮
+    dynamic_add_statusBar();//动态添加状态栏
+    QTextEdit *mTextEdit = new QTextEdit();
+    mTextEdit->setText("设置核心控件");
+    setCentralWidget(mTextEdit);//设置核心控件
+    //浮动窗口
+    QDockWidget *mDock = new QDockWidget();
+    addDockWidget(Qt::RightDockWidgetArea,mDock);
+    QTextEdit *mTextEditDock = new QTextEdit();
+    mDock->setWidget(mTextEditDock);
+}
+MainWindow::~MainWindow()
+{
+    //所有继承QObject的类都会自动施放内存空间
+    //或者指定了父对象的对象
+    //Qt 有一个对象树 会从低到上进行遍历 释放内存空间
+    delete ui;
+}
+void MainWindow::dynamic_add_module()
+{
+
+    //动态添加按钮
+    QPushButton *btn_p1 = new QPushButton(this);//这里this 表示是 这个按钮的父窗口
+
     btn_p1->setText("Lamda表达式");
+    //move总是对于他的父窗口而言
     btn_p1->move(200,100);
+    btn_p1->resize(60,25);//设置按钮大小
     int ta = 10 , tb = 100;
     connect(btn_p1,&QPushButton::clicked,
          // 使用 = 将这里的全部局部传入（拷贝） 需要修改则需要在括号后面加上关键字 mutable
@@ -43,6 +79,7 @@ MainWindow::MainWindow(QWidget *parent) :
             [a, &] 按值捕获a, 其它的变量按引用捕获
             [&b, =] 按引用捕获b,其它的变量按值捕获
             [this] 按值捕获this指针
+            如果不能使用则在 pro文件中加上 CONFIG += C++11
         */
         [&]() mutable
         {
@@ -50,14 +87,64 @@ MainWindow::MainWindow(QWidget *parent) :
              qDebug()<<ta<<tb;
             ta = 100,tb = 10;
         });
-    qDebug()<<ta<<"  "<<tb;
-}
+    //动态添加菜单栏及子项
+    QMenuBar *mBar = menuBar();//菜单栏
+    QMenu *pFile = mBar->addMenu("文件");//菜单
+    QAction *pNew = pFile->addAction("新建");//菜单项
+    //菜单项单击事件
+    connect(pNew,&QAction::triggered,
+            []()
+                {
+                      qDebug()<<tr("新建被按下");
+                }
+            );
 
-MainWindow::~MainWindow()
+    pFile->addSeparator();//添加分割线
+    QAction *pOpen = pFile->addAction("打开");
+
+
+    connect(pOpen,&QAction::triggered,
+                []()
+                {
+                    qDebug()<<"打开被按下";
+                }
+            );
+
+    QAction *p1 = mBar->addAction("模态对话框");
+    connect(p1,&QAction::triggered,[=]()
+                {
+                       QDialog dlg;
+                       dlg.exec();//这样 就不能操作父窗口
+                       qDebug()<<"模态对话框";
+                }
+            );
+    QAction *p2 = mBar->addAction("非模态对话框");
+    connect(p2,&QAction::triggered,[=]()
+                {
+                    QDialog *dlg = new QDialog();
+                    p2->set;
+                }
+            );
+    QToolBar *mToolBar = addToolBar("toolBar");  //工具栏
+    mToolBar->addAction(pNew);
+    QPushButton *pBut = new QPushButton();
+    pBut->setText("打开");
+    mToolBar->addWidget(pBut);
+
+
+}
+//添加状态栏
+void MainWindow::dynamic_add_statusBar()
 {
-    delete ui;
-}
+    QStatusBar *mstatusbar = statusBar();
+    QLabel *statusLabel = new QLabel(this);
+    statusLabel->setText("无数据");
+    mstatusbar->addWidget(statusLabel);
+    mstatusbar->addPermanentWidget(new QLabel("这样就可以从右边添加",this));
 
+
+}
+//弹出对话框
 void MainWindow::on_pushButton_clicked()
 {
     dialog_text_edit *t = new dialog_text_edit();
@@ -66,7 +153,7 @@ void MainWindow::on_pushButton_clicked()
    // t.exec();//使用这个函数需要等到用户将对话框关闭才会消失
 }
 
-
+//处理 信息框
 void MainWindow::on_but_massage_clicked()
 {
     /*

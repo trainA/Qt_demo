@@ -24,7 +24,11 @@ private slots:
     void on_pb_code_creatUI_clicked();
 
 private:
+    void dynamic_add_module();
+    void dynamic_add_statusBar();
+private:
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H
