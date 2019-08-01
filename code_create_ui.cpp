@@ -12,3 +12,11 @@ code_create_ui::~code_create_ui()
 {
     delete ui;
 }
+
+void code_create_ui::initUI()
+{
+    chkBoxBold = new QCheckBox(tr("Underline"));
+    chkBoxItalic = new QCheckBox(tr("Italic"));
+    chkBoxUnder = new QCheckBox(tr("Under"));
+
+}

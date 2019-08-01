@@ -24,6 +24,8 @@ private slots:
 
     void on_checkBox_3_clicked(bool checked);
     void set_font_color();
+    void on_but_close_clicked();
+
 private :
    Ui::dialog_text_edit *ui;
 };

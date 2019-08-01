@@ -27,7 +27,30 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);//实现窗口的生成与各种属性的设置
-
+    QPushButton *btn_p1 = new QPushButton(this);
+    btn_p1->setText("Lamda表达式");
+    btn_p1->move(200,100);
+    int ta = 10 , tb = 100;
+    connect(btn_p1,&QPushButton::clicked,
+         // 使用 = 将这里的全部局部传入（拷贝） 需要修改则需要在括号后面加上关键字 mutable
+         //使用 & 将全部局部变量传入（不拷贝
+         //输入某一个则传某一个值
+            /*
+            [] 什么也没有捕获
+            [a, &b] 按值捕获a，按引用捕获b
+            [&] 按引用捕获任何用到的外部变量
+            [=] 按值捕获任何用到的外部变量
+            [a, &] 按值捕获a, 其它的变量按引用捕获
+            [&b, =] 按引用捕获b,其它的变量按值捕获
+            [this] 按值捕获this指针
+        */
+        [&]() mutable
+        {
+             qDebug()<<"test";
+             qDebug()<<ta<<tb;
+            ta = 100,tb = 10;
+        });
+    qDebug()<<ta<<"  "<<tb;
 }
 
 MainWindow::~MainWindow()

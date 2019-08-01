@@ -2,7 +2,7 @@
 #define CODE_CREATE_UI_H
 
 #include <QDialog>
-
+#include "universal_head.h"
 namespace Ui {
 class code_create_ui;
 }
@@ -16,7 +16,21 @@ public:
     ~code_create_ui();
 
 private:
+
+    void initUI();
+private:
     Ui::code_create_ui *ui;
+
+    QCheckBox *chkBoxUnder;
+    QCheckBox *chkBoxItalic;
+    QCheckBox *chkBoxBold;
+    QRadioButton *rBtnBlack;
+    QRadioButton *rBtnBlue;
+    QRadioButton *rBtnRed;
+    QPlainTextEdit txtEdit;
+    QPushButton *btnOK;
+    QPushButton *btnClose;
+    QPushButton *btnCancel;
 };
 
 #endif // CODE_CREATE_UI_H

@@ -37,3 +37,8 @@ void dialog_text_edit::set_font_color()
         plet.setColor(QPalette::Text,Qt::red);
     ui->plainTextEdit->setPalette(plet);
 }
+
+void dialog_text_edit::on_but_close_clicked()
+{
+
+}
