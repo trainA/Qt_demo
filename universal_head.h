@@ -26,6 +26,9 @@
     #include <QMenuBar>
     #include <QToolBar>
     #include <QDockWidget>//浮动窗口
+    #include <QDialog>
+    #include <QMessageBox>//信息框
+    #include <QFileDialog>
 #endif
 
 #ifndef NOT_INPUT_QSTL

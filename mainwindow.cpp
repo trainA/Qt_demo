@@ -61,7 +61,7 @@ void MainWindow::dynamic_add_module()
 
     //动态添加按钮
     QPushButton *btn_p1 = new QPushButton(this);//这里this 表示是 这个按钮的父窗口
-
+//    btn_p1->setGeometry(); 前面两个表示 坐标 后面两个表示长宽
     btn_p1->setText("Lamda表达式");
     //move总是对于他的父窗口而言
     btn_p1->move(200,100);
@@ -104,9 +104,13 @@ void MainWindow::dynamic_add_module()
 
 
     connect(pOpen,&QAction::triggered,
-                []()
+                [=]()
                 {
-                    qDebug()<<"打开被按下";
+                    QString path = QFileDialog::getOpenFileName(this,
+                                                                "打开",
+                                                                "../",
+                                                                "souce(*.cpp *.h *.c);;all(*.*)");
+                    qDebug()<<path;
                 }
             );
 
@@ -121,8 +125,9 @@ void MainWindow::dynamic_add_module()
     QAction *p2 = mBar->addAction("非模态对话框");
     connect(p2,&QAction::triggered,[=]()
                 {
-                    QDialog *dlg = new QDialog();
-                    p2->set;
+                    QDialog *dlg = new QDialog;
+                    dlg->setAttribute(Qt::WA_DeleteOnClose);//关闭窗口的时候释放内存
+                    dlg->show();
                 }
             );
     QToolBar *mToolBar = addToolBar("toolBar");  //工具栏
@@ -157,6 +162,8 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_but_massage_clicked()
 {
     /*
+     *
+     * F1进查看帮助文档选择 Static Public Members 查看更多信息框
     StandardButton QMessageBox::information(QWidget * parent, const QString & title, const QString & text, StandardButtons buttons = Ok, StandardButton defaultButton = NoButton) [static]
     第一个参数是父控件指针
     第二个参数是标题
