@@ -18,6 +18,7 @@ public:
     void CreateLineChart(QVector<double> datX, QVector<double> datY,
                          QString titleX= "", QString titleY = "");
     void addLineChart(QVector<double> datX, QVector<double> datY,QPair<int,int>xRange,QPair<int,int>yRange);
+    void CreateHistogram();
 private:
     Ui::ChartPlot *ui;
 };

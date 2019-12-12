@@ -132,6 +132,13 @@ void MainWindow::dynamic_add_module()
             );
     QMenu *charts = mBar->addMenu("图表");
     QAction *chartLine = charts->addAction("线形图");
+    QAction *chartHistogram = charts->addAction("柱状图");
+    connect(chartHistogram,&QAction::triggered,[=]{
+        ChartPlot *dlg = new ChartPlot();
+        dlg->setWindowTitle(chartHistogram->text());
+        dlg->CreateHistogram();
+        dlg->show();
+    });
     connect(chartLine,&QAction::triggered,[=](){
             ChartPlot *dlg = new ChartPlot();
             dlg->setWindowTitle(chartLine->text());
@@ -158,7 +165,8 @@ void MainWindow::dynamic_add_module()
     QPushButton *pBut = new QPushButton();
     pBut->setText("打开");
     mToolBar->addWidget(pBut);
-
+    mToolBar->addAction(chartHistogram);
+    mToolBar->addAction(chartLine);
 
 }
 //添加状态栏
