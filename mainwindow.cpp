@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QMenu>
 #include <QAction>
-
+#include "ChartPlot.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dialog_text_edit.h"
@@ -40,11 +40,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dynamic_add_module();//动态添加菜单 按钮
     dynamic_add_statusBar();//动态添加状态栏
-    QTextEdit *mTextEdit = new QTextEdit();
-    mTextEdit->setText("设置核心控件");
+    mTextEdit = new QTextEdit();
+    mTextEdit->setText("1,2,3,4,5,6,7,8,9,10\n1,2,3,4,5,6,7,8,9,10");
     setCentralWidget(mTextEdit);//设置核心控件
     //浮动窗口
-    QDockWidget *mDock = new QDockWidget();
+    mDock = new QDockWidget();
     addDockWidget(Qt::RightDockWidgetArea,mDock);
     QTextEdit *mTextEditDock = new QTextEdit();
     mDock->setWidget(mTextEditDock);
@@ -130,6 +130,29 @@ void MainWindow::dynamic_add_module()
                     dlg->show();
                 }
             );
+    QMenu *charts = mBar->addMenu("图表");
+    QAction *chartLine = charts->addAction("线形图");
+    connect(chartLine,&QAction::triggered,[=](){
+            ChartPlot *dlg = new ChartPlot();
+            dlg->setWindowTitle(chartLine->text());
+            dlg->setAttribute(Qt::WA_DeleteOnClose);
+            QVector<double> x;
+            QVector<double> y;
+            QString text = mTextEdit->toPlainText();
+            QString xdata = text.left( text.indexOf('\n'));
+            QString ydata = text.mid(text.indexOf('\n')+1,text.size());
+
+            QStringList xdataList = xdata.split(",");
+            QStringList ydataList = ydata.split(",");
+            for(int i = 0;i<xdataList.size();i++)
+            {
+
+                x.push_back(xdataList.at(i).toInt());
+                y.push_back(ydataList.at(i).toInt());
+            }
+            dlg->CreateLineChart(x,y,"样例数据");
+            dlg->exec();
+    });
     QToolBar *mToolBar = addToolBar("toolBar");  //工具栏
     mToolBar->addAction(pNew);
     QPushButton *pBut = new QPushButton();

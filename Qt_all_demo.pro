@@ -6,8 +6,7 @@
 
 QT       += core gui
 #项目加入 core gui模块
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 #条件执行语句，当qt版本 大于 4 的时候加入 widgets 模块
 
 
@@ -32,15 +31,20 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     dialog_text_edit.cpp \
-    code_create_ui.cpp
+    code_create_ui.cpp \
+    qcustomplot/qcustomplot.cpp \
+    chartplot.cpp
 #头文件
 HEADERS += \
         mainwindow.h \
     dialog_text_edit.h \
     code_create_ui.h \
-    universal_head.h
+    universal_head.h \
+    qcustomplot/qcustomplot.h \
+    chartplot.h
 #窗体文件
 FORMS += \
         mainwindow.ui \
     dialog_text_edit.ui \
-    code_create_ui.ui
+    code_create_ui.ui \
+    chartplot.ui

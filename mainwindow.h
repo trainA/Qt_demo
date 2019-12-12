@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QTextEdit>
 namespace Ui {
 class MainWindow;
 }
@@ -28,7 +28,8 @@ private:
     void dynamic_add_statusBar();
 private:
     Ui::MainWindow *ui;
-
+    QTextEdit *mTextEdit;
+    QDockWidget *mDock;
 };
 
 #endif // MAINWINDOW_H
